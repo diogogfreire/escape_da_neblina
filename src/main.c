@@ -123,12 +123,12 @@ void setarPonto(Ponto* p, double a, double b)
 	p->y = b;           
 }
 
-double distanciaEuclidiana(Ponto* p)
+double distanciaEuclidiana(Ponto* p1, Ponto* p2)
 {
-	a = p->x;
-	b = p->y;
+	double a = p2->x - p1->x;
+	double b = p2->y - p1->y;
 
-	h = pow(a, 2) + pow(b, 2); // Soma do quadrado dos catetos
+	double h = pow(a, 2) + pow(b, 2); // Soma do quadrado dos catetos
 	
 	return sqrt(h);				  					 
 }
@@ -143,8 +143,8 @@ int main()
     	double d; // Distancia euclideana de um ponto para outro
 	Ponto* pontos; // Coordenadas dos vertices
 
-	testeHeap();
-	testeVertices();
+	//testeHeap();
+	//testeVertices();
 	Grafo* grafo = novoGrafo();
 
     	/* Leitura das entradas */
@@ -155,7 +155,7 @@ int main()
 	pontos = (Ponto*) malloc(sizeof(Ponto) * (n + 1));	
 	
 	// Verificacao da alocacao de memoria
-	if(distancias == NULL)
+	if(pontos == NULL)
 	{
 		printf("A alocacao do vetor de distancias falhou!");
 		exit(1);
@@ -165,7 +165,7 @@ int main()
     	for(int i = 0; i < n; i++)
     	{
         	scanf("%lf %lf", &x, &y);
-		insereVertice(g); // Criar um vertice 'i'
+		insereVertice(grafo); // Criar um vertice 'i'
 		setarPonto(&pontos[i], x, y); // Coloca as coordenadas do vertice no vetor
     	}
     
@@ -173,22 +173,22 @@ int main()
     	for(int i = 0; i < m; i++)
     	{
         	scanf("%d %d", &u, &v);
-		d = distanciaEuclideana(&pontos[i]);
-		insereAresta(g, u, d, v); // Cria a aresta peso (distancia)
+		d = distanciaEuclidiana(&pontos[u], &pontos[v]);
+		insereAresta(grafo, u, d, v); // Cria a aresta peso (distancia)
     	}
     
 	// Clareiras com portais (arestas)
     	for(int i = 0; i < k; i++)
     	{
         	scanf("%d %d", &u, &v);
-		insereAresta(g, u, 0, v); // Cria a aresta com peso 0 (zero)
+		insereAresta(grafo, u, 0, v); // Cria a aresta com peso 0 (zero)
     	}
 
     	scanf("%lf %d", &s, &q);
 	
-	imprimeGrafo(g);
+	imprimeGrafo(grafo);
 
-	free(distancias);
+	free(pontos);
 
     	return 0;
 }
