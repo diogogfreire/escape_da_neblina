@@ -1,9 +1,9 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
-#include "./include/no.h"
-#include "./include/graph.h"
-#include "./include/fila_prioridade.h"
+#include "../include/no.h"
+#include "../include/graph.h"
+#include "../include/fila_prioridade.h"
 
 typedef struct
 {

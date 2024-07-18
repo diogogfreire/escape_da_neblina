@@ -176,6 +176,25 @@ int grauMaximo(Grafo* g)
         return maiorGrau;
 }
 
+Lista* vizinhosVertice(Grafo* g, int v)
+{
+	Lista* aux = g->listaAdj;
+	int tamanaho = grauMaximo(g);
+	int i = 0;
+	No* auxNo;
+	No* vizinhos = (No*) malloc(sizeof(No) * tamanho);
+
+	while(aux != NULL)
+	{
+		if(aux->item == v)
+		{
+			return aux;
+		}
+
+		aux = aux->proximaLista;
+	}
+}
+
 void imprimeVizinhos(Grafo* g, int v)
 {
 	Lista* aux = g->listaAdj;

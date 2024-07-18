@@ -13,6 +13,7 @@ typedef struct lista
 } Lista;
 
 Lista* criarLista(int idVertice);
+int getTamanhoLista(Lista* l);
 int listaVazia(Lista* l);
 No* get(Lista* l, int v);
 void insereFinal(Lista* l, double d, int v);

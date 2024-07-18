@@ -15,6 +15,11 @@ Lista* criarLista(int idVertice)
 	return lista;
 }
 
+int getTamanhoLista(Lista* l)
+{
+	return l->vertices;
+}
+
 int listaVazia(Lista* l)
 {
 	return l->primeiro == NULL;
